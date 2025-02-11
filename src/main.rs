@@ -1,4 +1,3 @@
-mod monsters;
 mod router;
 mod tierlists;
 
