@@ -15,6 +15,8 @@ pub async fn get_tierlists(
     // Conversion de l'ID
     let object_id = ObjectId::parse_str(id).map_err(|_| Status::BadRequest)?;
 
+    println!("ID: {:?}", object_id);
+
     // Création du service
     let tierlists_service = TierlistsService {
         collection: state.db.collection::<TierList>("tierlists"),

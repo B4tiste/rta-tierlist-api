@@ -6,7 +6,6 @@ pub struct TierList {
     _id: ObjectId,
     elo: Elo,
     tierlist: Vec<RangTierlist>,
-    date: i64,
 }
 
 #[derive(Debug, Serialize, Deserialize)]

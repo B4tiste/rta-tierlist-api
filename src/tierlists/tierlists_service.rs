@@ -10,6 +10,9 @@ pub struct TierlistsService {
 
 impl TierlistsService {
     pub async fn get_tierlist(&self, id: ObjectId) -> Option<TierList> {
+        println!("zazou");
+        let count = self.collection.count_documents(doc! {}).await.unwrap();
+        println!("Count: {:?}", count);
         self.collection.find_one(doc! { "_id": id }).await.unwrap()
     }
 }

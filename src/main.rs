@@ -24,7 +24,7 @@ async fn main(
         .await
         .map_err(|e| CustomError::msg(e.to_string()))?;
 
-    let db = client.database("rta-tierlists-db");
+    let db = client.database("rta-tierlist-db");
 
     let app_state = Arc::new(AppState { db });
 
