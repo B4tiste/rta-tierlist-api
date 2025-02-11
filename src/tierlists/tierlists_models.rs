@@ -3,36 +3,36 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct TierList {
-    _id: ObjectId,
-    elo: Elo,
-    tierlist: Vec<RangTierlist>,
+    pub _id: ObjectId,
+    pub elo: Elo,
+    pub tierlist: Vec<RangTierlist>,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
-struct RangTierlist {
-    rank: Rank,
-    list_monsters: Vec<MonsterInfoTierlist>,
+pub struct RangTierlist {
+    pub rank: Rank,
+    pub list_monsters: Vec<MonsterInfoTierlist>,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
-struct MonsterInfoTierlist {
-    score: f64,
-    id_monster: i64,
-    winrate: f64,
-    pickrate: f64,
-    banrate: f64,
+pub struct MonsterInfoTierlist {
+    pub score: f64,
+    pub id_monster: i64,
+    pub winrate: f64,
+    pub pickrate: f64,
+    pub banrate: f64,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
-struct Monster {
-    _id: i64,
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct Monster {
+    pub _id: i64,
     name: String,
     img_url: String,
     element: Element,
 }
 
 #[derive(Debug, Serialize, Deserialize)]
-enum Elo {
+pub enum Elo {
     Conq,
     G1,
     G3,
@@ -40,7 +40,7 @@ enum Elo {
 
 #[derive(Debug, Serialize, Deserialize)]
 #[allow(non_camel_case_types)]
-enum Rank {
+pub enum Rank {
     sssMonster,
     ssMonster,
     smonster,
@@ -50,11 +50,33 @@ enum Rank {
     dmonster,
 }
 
-#[derive(Debug, Serialize, Deserialize)]
+#[derive(Debug, Serialize, Deserialize, Clone)]
 enum Element {
     Fire,
     Water,
     Wind,
     Light,
     Dark,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct DetailedMonsterInfo {
+    pub score: f64,
+    pub monster: Monster, // full monster details
+    pub winrate: f64,
+    pub pickrate: f64,
+    pub banrate: f64,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct DetailedRangTierlist {
+    pub rank: Rank,
+    pub list_monsters: Vec<DetailedMonsterInfo>,
+}
+
+#[derive(Debug, Serialize, Deserialize)]
+pub struct TierListDetailed {
+    pub _id: ObjectId,
+    pub elo: Elo,
+    pub tierlist: Vec<DetailedRangTierlist>,
 }
